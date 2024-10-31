@@ -1,58 +1,58 @@
 /**:
     ros__parameters:
         common:
-            lid_topic: "/livox/lidar"   # LiDAR Êı¾İµÄÖ÷ÌâÃû³Æ
-            imu_topic: "/livox/imu"     # IMU Êı¾İµÄÖ÷ÌâÃû³Æ
-            con_frame: false            # true: Èç¹ûĞèÒª½«¶à¸ö LiDAR Ö¡ºÏ²¢³ÉÒ»¸öÖ¡
-            con_frame_num: 1            # ºÏ²¢µÄÖ¡Êı
-            cut_frame: false            # true: Èç¹ûĞèÒª½«Ò»¸ö LiDAR Ö¡·Ö¸î³É¶à¸ö×ÓÖ¡
-            cut_frame_time_interval: 0.1 # should be integral fraction of 1 / LiDAR frequency  # ·Ö¸îÊ±¼ä¼ä¸ô£¬Ó¦Îª LiDAR ÆµÂÊµÄÕûÊı±¶·ÖÊı
+            lid_topic: "/livox/lidar"   # LiDAR æ•°æ®çš„ä¸»é¢˜åç§°
+            imu_topic: "/livox/imu"     # IMU æ•°æ®çš„ä¸»é¢˜åç§°
+            con_frame: false            # true: å¦‚æœéœ€è¦å°†å¤šä¸ª LiDAR å¸§åˆå¹¶æˆä¸€ä¸ªå¸§
+            con_frame_num: 1            # åˆå¹¶çš„å¸§æ•°
+            cut_frame: false            # true: å¦‚æœéœ€è¦å°†ä¸€ä¸ª LiDAR å¸§åˆ†å‰²æˆå¤šä¸ªå­å¸§
+            cut_frame_time_interval: 0.1 # should be integral fraction of 1 / LiDAR frequency  # åˆ†å‰²æ—¶é—´é—´éš”ï¼Œåº”ä¸º LiDAR é¢‘ç‡çš„æ•´æ•°å€åˆ†æ•°
             time_diff_lidar_to_imu: 0.0 # Time offset between LiDAR and IMU calibrated by other algorithms, e.g., LI-Init (find in Readme)
-                                        # LiDAR ºÍ IMU Ê±¼ä²î£¬Í¨¹ıÆäËûËã·¨Ğ£×¼£¨Èç LI-Init£©
+                                        # LiDAR å’Œ IMU æ—¶é—´å·®ï¼Œé€šè¿‡å…¶ä»–ç®—æ³•æ ¡å‡†ï¼ˆå¦‚ LI-Initï¼‰
         preprocess:
             lidar_type: 1      # 1 for Livox serials LiDAR, 2 for Velodyne LiDAR, 3 for ouster LiDAR
-            scan_line: 4        # É¨ÃèÏßÊı  ¸ù¾İÉè±¸Êµ¼Ê²ÎÊıÉèÖÃ£¬Ô½¸ßÔòÔ½×¼È·£¬¼ÆËãÁ¿Ô½´ó
+            scan_line: 4        # æ‰«æçº¿æ•°(å®˜æ–¹ä¸º4ï¼Œæœ€å¤§å¥½åƒä¸º6)  æ ¹æ®è®¾å¤‡å®é™…å‚æ•°è®¾ç½®ï¼Œè¶Šé«˜åˆ™è¶Šå‡†ç¡®ï¼Œè®¡ç®—é‡è¶Šå¤§
             timestamp_unit: 3   # the unit of time/t field in the PointCloud2 rostopic: 0-second, 1-milisecond, 2-microsecond, 3-nanosecond.
-            blind: 0.5          #Ã¤Çø¾àÀë
+            blind: 0.5          #ç›²åŒºè·ç¦»
 
         mapping:
             imu_en: true
-            start_in_aggressive_motion: false   # Èç¹ûÎª true£¬ÔòÊÓÎªÀ×´ï´¦ÓÚ¼¤ÁÒÔË¶¯×´Ì¬£¬ĞèÒªÔÚÏÂÃæÌá¹©Ô¤ÖªÖØÁ¦Öµ
-            extrinsic_est_en: false             # ¶ÔÓÚ¾çÁÒÔË¶¯£¬½«´Ë±äÁ¿ÉèÎª false
+            start_in_aggressive_motion: true    # å¦‚æœä¸º trueï¼Œåˆ™è§†ä¸ºé›·è¾¾ä»æ¿€çƒˆè¿åŠ¨çŠ¶æ€å¼€å§‹ï¼Œéœ€è¦åœ¨ä¸‹é¢æä¾›é¢„è®¾å®šé‡åŠ›å€¼
+            extrinsic_est_en: false             # å¯¹äºå‰§çƒˆè¿åŠ¨ï¼Œå°†æ­¤å˜é‡è®¾ä¸º false
             imu_time_inte: 0.005                # = 1 / frequency of IMU
             satu_acc: 3.0                       # the saturation value of IMU's acceleration. not related to the units
             satu_gyro: 35.0                     # the saturation value of IMU's angular velocity. not related to the units
             acc_norm: 1.0                       # 1.0 for g as unit, 9.81 for m/s^2 as unit of the IMU's acceleration
-            lidar_meas_cov: 0.01                # 0.001      LiDAR µÄ²âÁ¿Ğ­·½²î
-            acc_cov_output: 500.0
-            gyr_cov_output: 1000.0
-            b_acc_cov: 0.0001
+            lidar_meas_cov: 0.01                # 0.001      LiDAR çš„æµ‹é‡åæ–¹å·®
+            acc_cov_output: 500.0               # è¾“å‡ºåŠ é€Ÿåº¦çš„åæ–¹å·®
+            gyr_cov_output: 1000.0              # è¾“å‡ºè§’é€Ÿåº¦çš„åæ–¹å·®
+            b_acc_cov: 0.0001                   # IMUåŠ é€Ÿåº¦çš„åç½®å€¼
             b_gyr_cov: 0.0001
-            imu_meas_acc_cov: 0.01              #0.1 # 2
+            imu_meas_acc_cov: 0.01              #0.1 # 2  # IMU æµ‹é‡åŠ é€Ÿåº¦çš„åæ–¹å·®
             imu_meas_omg_cov: 0.01              #0.1 # 2
             gyr_cov_input: 0.01                 # for IMU as input model
             acc_cov_input: 0.1                  # for IMU as input model
-            plane_thr: 0.1                      # 0.05, Æ½ÃæãĞÖµ£¬Ô½Ğ¡µ¼ÖÂ¸üÈİÒ×ÊÓÎªÆ½Ãæ
+            plane_thr: 0.1                      # 0.05, å¹³é¢é˜ˆå€¼ï¼Œè¶Šå°å¯¼è‡´æ›´å®¹æ˜“è§†ä¸ºå¹³é¢
             match_s: 81.0
-            fov_degree: 360.0                   #  ÊÓ³¡½Ç¶È·¶Î§
-            det_range: 100.0                    # ¼ì²â·¶Î§¾àÀë  
-            gravity_align: true                 # true ±íÊ¾½«ÊÀ½ç×ø±êÏµµÄ z ÖáÓëÖØÁ¦·½Ïò¶ÔÆë£¬²¢Ö¸¶¨ÖØÁ¦·½Ïò
-            gravity: [ 0.0, 0.0, -9.810 ]       # [0.0, 9.810, 0.0] # ĞèÒª¶ÔÆëµÄÖØÁ¦Öµ
-            gravity_init: [ 0.0, 0.0, -9.810 ]  # [0.0, 9.810, 0.0] # # ³õÊ¼ IMU ×ø±êÏµÖĞµÄÖØÁ¦Öµ£¬µ± imu_en Îª false »ò´Ó·Ç¾²Ö¹×´Ì¬¿ªÊ¼Ê±Ê¹ÓÃ
-            extrinsic_T: [ -0.011, -0.02329, 0.04412 ]   # Íâ²Î:imuÏà¶ÔÓÚ¶ÔÓÚÀ×´ïµÄÆ½ÒÆÏòÁ¿
+            fov_degree: 360.0                   #  è§†åœºè§’åº¦èŒƒå›´
+            det_range: 100.0                    # æ£€æµ‹èŒƒå›´è·ç¦»  
+            gravity_align: true                 # true è¡¨ç¤ºå°†ä¸–ç•Œåæ ‡ç³»çš„ z è½´ä¸é‡åŠ›æ–¹å‘å¯¹é½ï¼Œå¹¶æŒ‡å®šé‡åŠ›æ–¹å‘
+            gravity: [ 0.0, 0.0, -9.810 ]       # [0.0, 9.810, 0.0] # éœ€è¦å¯¹é½çš„é‡åŠ›å€¼ 
+            gravity_init: [ 0.0, 0.0, -9.810 ]  # [0.0, 9.810, 0.0] # # åˆå§‹ IMU åæ ‡ç³»ä¸­çš„é‡åŠ›å€¼ï¼ˆè¿™ä¸ªä¸ºé¢„è®¾å®šå€¼ï¼‰ï¼Œå½“ imu_en ä¸º false æ—¶ä½¿ç”¨
+            extrinsic_T: [ -0.011, -0.02329, 0.04412 ]   # å¤–å‚:imuç›¸å¯¹äºå¯¹äºé›·è¾¾çš„å¹³ç§»å‘é‡
             extrinsic_R: [ 1.0, 0.0, 0.0,
                            0.0, 1.0, 0.0,
-                           0.0, 0.0, 1.0 ]  # Í¬Àí£¬Íâ²ÎĞı×ª¾ØÕó
+                           0.0, 0.0, 1.0 ]  # åŒç†ï¼Œå¤–å‚æ—‹è½¬çŸ©é˜µ
 
         odometry:
-            publish_odometry_without_downsample: false   # ÊÇ·ñ·¢²¼Î´ÏÂ²ÉÑùµÄÀï³Ì¼ÆÊı¾İ
+            publish_odometry_without_downsample: false   # æ˜¯å¦å‘å¸ƒæœªä¸‹é‡‡æ ·çš„é‡Œç¨‹è®¡æ•°æ®
 
         publish:
-            path_en: true                 # false: ¹Ø±ÕÂ·¾¶Êä³ö
-            scan_publish_en: true         # false: ¹Ø±ÕËùÓĞµãÔÆÊä³ö
-            scan_bodyframe_pub_en: false  # true: Êä³ö IMU Ìå×ø±êÏµÖĞµÄµãÔÆÉ¨Ãè
+            path_en: true                 # false: å…³é—­è·¯å¾„è¾“å‡º
+            scan_publish_en: true         # false: å…³é—­æ‰€æœ‰ç‚¹äº‘è¾“å‡º
+            scan_bodyframe_pub_en: false  # true: è¾“å‡º IMU ä½“åæ ‡ç³»ä¸­çš„ç‚¹äº‘æ‰«æ
 
         pcd_save:
-            pcd_save_en: false
-            interval: -1                # Ã¿¸ö PCD ÎÄ¼ş±£´æ¶àÉÙÖ¡ LiDAR Êı¾İ£»
-                                        # -1£ºËùÓĞÖ¡±£´æÔÚÒ»¸ö PCD ÎÄ¼şÖĞ£¬¿ÉÄÜÔÚÖ¡Êı¹ı¶àÊ±µ¼ÖÂÄÚ´æ±ÀÀ£
+            pcd_save_en: true
+            interval: -1                # æ¯ä¸ª PCD æ–‡ä»¶ä¿å­˜å¤šå°‘å¸§ LiDAR æ•°æ®ï¼›
+                                        # -1ï¼šæ‰€æœ‰å¸§ä¿å­˜åœ¨ä¸€ä¸ª PCD æ–‡ä»¶ä¸­ï¼Œå¯èƒ½åœ¨å¸§æ•°è¿‡å¤šæ—¶å¯¼è‡´å†…å­˜å´©æºƒ
