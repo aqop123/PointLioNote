@@ -44,7 +44,7 @@ void ImuProcess::Set_init(Eigen::Vector3d &tmp_gravity, Eigen::Matrix3d &rot)
    ** 2. normalize the acceleration measurenments to unit gravity **/
   // V3D tmp_gravity = - mean_acc / mean_acc.norm() * G_m_s2; // state_gravity;
   M3D hat_grav;
-  hat_grav << 0.0, gravity_(2), -gravity_(1),
+  hat_grav << 0.0, gravity_(2), -gravity_(1),       // 这里的 gravity_ 是yaml文件的gravity参数
               -gravity_(2), 0.0, gravity_(0),
               gravity_(1), -gravity_(0), 0.0;
   double align_norm = (hat_grav * tmp_gravity).norm() / gravity_.norm() / tmp_gravity.norm();
